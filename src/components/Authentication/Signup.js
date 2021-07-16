@@ -4,13 +4,14 @@ import { useAuth}  from '../../Context/AuthContext';
 import {Link} from 'react-router-dom'
 
 const Signup = () => {
-    const [Error, SetError] = useState('')
+    const [Error, SetError] = useState('');
+    const [Loading, setLoading] = useState(false)
     const emailRef  = useRef();
     const userRef  = useRef();
     const PasswordRef  = useRef();
     const ConfirmPasswordRef  = useRef();
      
-    const { login } = useAuth();
+    const { signup } = useAuth();
 
  
     async function  handleSubmit(e) {
@@ -22,14 +23,16 @@ const Signup = () => {
             SetError('Passwords Doesnt Match')
         }
         try{
-            
+             SetError("");
+             setLoading(true);//here user can click on signup as it is true
             await signup(emailRef.current.value,PasswordRef.current.value)
         }
         catch{
           
             SetError('Oops!!! Failed to create an account')
         }
-    }
+        setLoading(false);
+    } 
     return (
         <div>
         <Card.Body>
@@ -56,7 +59,7 @@ const Signup = () => {
                <Form.Control type="password" ref={ConfirmPasswordRef} required />
               </Form.Group>
            
-             <Button className="w-50"type="submit">
+             <Button disabled={Loading} className="w-50"type="submit">
                 Sign Up
               </Button>
                <Card.Body>
@@ -64,7 +67,6 @@ const Signup = () => {
                Already have and account ? <Link to="/login">Login </Link>
                </div>{" "}
               </Card.Body>{" "}
-            
               </Form>
            </Card.Body>
         </div>
