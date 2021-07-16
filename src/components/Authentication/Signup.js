@@ -1,11 +1,12 @@
 import React ,{useRef,useState} from 'react'
 import { Form, Button, Card, Alert } from "react-bootstrap";
-import { useAuth}  from '../Context/AuthContext';
+import { useAuth}  from '../../Context/AuthContext';
 
 
 const Signup = () => {
     const [Error, SetError] = useState('')
     const emailRef  = useRef();
+    const userRef  = useRef();
     const PasswordRef  = useRef();
     const ConfirmPasswordRef  = useRef();
      
@@ -32,13 +33,19 @@ const Signup = () => {
     return (
         <div>
         <Card.Body>
-            <h2 className="text-center mb-4">Signup</h2>
+            <h2 className="text-center mb-4 m-auto">Signup</h2>
             {Error && <Alert>{Error}</Alert>}
             <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3 w-50" Id="Email">
+                <Form.Group className="mb-3 w-50 ">
+               <Form.Label>UserName</Form.Label>
+               <Form.Control type="text" ref={userRef} required />
+               </Form.Group>
+              
+              <Form.Group className="mb-3 w-50 ">
                <Form.Label>Email Address</Form.Label>
                <Form.Control type="email" ref={emailRef} required />
               </Form.Group>
+            
               
               <Form.Group className='mb-3 w-50' Id = "Password">
                 <Form.Label>Password</Form.Label>

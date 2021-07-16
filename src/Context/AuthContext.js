@@ -27,7 +27,17 @@ export  function AuthProvider({children})  {
      }
 
 
+     function login(email,password){
 
+        return auth.signInWithEmailAndPassword(email, password)
+     }
+ 
+
+    function logout(email,password) {
+
+        return auth.signOut();
+        
+    }
 
 
     //here we are setting the user that is he is a user now and the persistence is also done here
