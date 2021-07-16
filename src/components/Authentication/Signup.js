@@ -1,7 +1,7 @@
 import React ,{useRef,useState} from 'react'
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth}  from '../../Context/AuthContext';
-
+import {Link} from 'react-router-dom'
 
 const Signup = () => {
     const [Error, SetError] = useState('')
@@ -10,7 +10,7 @@ const Signup = () => {
     const PasswordRef  = useRef();
     const ConfirmPasswordRef  = useRef();
      
-    const { signup } = useAuth();
+    const { login } = useAuth();
 
  
     async function  handleSubmit(e) {
@@ -59,6 +59,12 @@ const Signup = () => {
              <Button className="w-50"type="submit">
                 Sign Up
               </Button>
+               <Card.Body>
+              <div className="w-100 text-center mt-2">
+               Already have and account ? <Link to="/login">Login </Link>
+               </div>{" "}
+              </Card.Body>{" "}
+            
               </Form>
            </Card.Body>
         </div>
