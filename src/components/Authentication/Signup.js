@@ -27,9 +27,10 @@ const Signup = () => {
              setLoading(true);//here user can click on signup as it is true
             await signup(emailRef.current.value,PasswordRef.current.value)
         }
-        catch{
+        catch(err){
           
-            SetError('Oops!!! Failed to create an account')
+            SetError('Oops!!! '+err.message);
+           
         }
         setLoading(false);
     } 
@@ -37,7 +38,7 @@ const Signup = () => {
         <div>
         <Card.Body>
             <h2 className="text-center mb-4 m-auto">Signup</h2>
-            {Error && <Alert>{Error}</Alert>}
+            {Error && <Alert variant="danger" className="h-2 w-50">{Error}</Alert>}
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3 w-50 ">
                <Form.Label>UserName</Form.Label>
