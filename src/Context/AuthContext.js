@@ -1,6 +1,6 @@
 import React,{useState,useContext,useEffect} from 'react';
 import {auth} from '../firebase'
-
+import firebase from 'firebase/app';
 
 
 
@@ -39,6 +39,33 @@ export  function AuthProvider({children})  {
         
     }
 
+    function googlesignin(){
+
+        var provider = new firebase.auth.GoogleAuthProvider();
+
+        return auth.signInWithPopup(provider);
+    }
+
+    function resetemail(email) {
+
+        return auth.sendPasswordResetEmail(email);
+        
+    }
+   
+
+   function updatepassword(password) {
+       
+        return CurrentUser.updatePassword(password);
+   }
+
+
+   function updateemail(email) {
+       
+        return CurrentUser.updateemail(email);
+   }
+
+
+
 
     //here we are setting the user that is he is a user now and the persistence is also done here
     //unsubscribe is for stopping it
@@ -54,7 +81,13 @@ export  function AuthProvider({children})  {
 
      const value ={
          CurrentUser,
-         signup
+         signup,
+         logout,
+         login,
+         resetemail,
+         updatepassword,
+         updateemail,
+         googlesignin
      }
    
      

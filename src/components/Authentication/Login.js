@@ -1,15 +1,16 @@
 import React ,{useRef,useState} from 'react'
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth}  from '../../Context/AuthContext';
-
+import {Link,useHistory} from 'react-router-dom'
 
 const Login = () => {
-    const [Error, SetError] = useState('')
+    const [Error, SetError] = useState('');
+    const [Loading, setLoading] = useState(false)
     const emailRef  = useRef();
     const PasswordRef  = useRef();
-    
+    const history = useHistory();
      
-    const { login } = useAuth();
+    const { login ,googlesignin} = useAuth();
 
  
     async function  handleSubmit(e) {
@@ -17,24 +18,43 @@ const Login = () => {
        
         e.preventDefault();
         
-        if(PasswordRef.current.value !== ConfirmPasswordRef.current.value){
-            SetError('Passwords Doesnt Match')
-        }
         try{
-            
-            await signup(emailRef.current.value,PasswordRef.current.value)
+            SetError("");
+              setLoading(true);
+            await login(emailRef.current.value,PasswordRef.current.value)
+            history.push('/');
         }
-        catch{
+        catch(err){
           
-            SetError('Oops!!! Failed to create an account')
+            SetError("I'm Afraid! " +err.message);
             
         }
+        setLoading(false);
+    }
+
+
+
+    async function handlegoogle(e){
+
+        e.preventDefault();
+        try{
+            SetError("");
+            setLoading(true);
+            await googlesignin();
+            history.push('/');
+        }
+        catch(err){
+          
+            SetError("I'm Afraid! " +err.message);
+            
+        }
+        setLoading(false);
     }
     return (
         <div>
         <Card.Body>
-            <h2 className="text-center mb-4 m-auto">Signup</h2>
-            {Error && <Alert>{Error}</Alert>}
+            <h2 className="text-center mb-4 m-auto">Login</h2>
+             {Error && <Alert variant="danger" className="h-2 w-50">{Error}</Alert>}
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3 w-50 ">
                <Form.Label>Email Address</Form.Label>
@@ -48,15 +68,22 @@ const Login = () => {
               </Form.Group>
              
            
-             <Button className="w-50"type="submit">
+              <Button disabled={Loading} className="w-50"type="submit">
                 Login
               </Button>
+             
                <Card.Body>
+               <div className="w-100 text-center mt-2">
+                Dont remember your Password? <Link to="/reset">Reset</Link>
+               </div>
               <div className="w-100 text-center mt-2">
                Is it Your First time Here ? <Link to="/signup">Signup</Link>
                </div>{" "}
-              </Card.Body>{" "}
+              </Card.Body>
               </Form>
+               <Button disabled={Loading} variant="light" size="sm"  type="submit" onClick={handlegoogle}>
+                <img src="https://cdn.dribbble.com/users/1717214/screenshots/4124610/g-logo.gif" alt="google logo" />
+              </Button>
            </Card.Body>
         </div>
     )
