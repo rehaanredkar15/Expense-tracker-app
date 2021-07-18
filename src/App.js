@@ -6,7 +6,7 @@ import Signup from './components/Authentication/Signup.js';
 import Login from './components/Authentication/Login.js';
 import ForgotPassword from './components/Authentication/ForgotPassword.js';
 import {AuthProvider} from './Context/AuthContext';
-
+import PrivateRoute from "./components/Authentication/PrivateRoute";
 
 
 
@@ -17,7 +17,7 @@ function App() {
    <Router>
    <AuthProvider>
      <Switch>
-       <Route  exact path="/" component={Dashboard}/>
+       <PrivateRoute  exact path="/" component={Dashboard}/>
        <Route path="/signup" component={Signup}/>
        <Route path="/login" component={Login}/>
        <Route path="/reset" component={ForgotPassword}/>
