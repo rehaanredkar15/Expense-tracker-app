@@ -1,7 +1,7 @@
 import React ,{useRef,useState} from 'react'
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth}  from '../../Context/AuthContext';
-import {Link} from 'react-router-dom'
+import {Link,useHistory} from 'react-router-dom'
 
 const Signup = () => {
     const [Error, SetError] = useState('');
@@ -10,7 +10,7 @@ const Signup = () => {
     const userRef  = useRef();
     const PasswordRef  = useRef();
     const ConfirmPasswordRef  = useRef();
-     
+    const history = useHistory();
     const { signup } = useAuth();
 
  
@@ -26,6 +26,7 @@ const Signup = () => {
              SetError("");
              setLoading(true);//here user can click on signup as it is true
             await signup(emailRef.current.value,PasswordRef.current.value)
+            history.push('/');
         }
         catch(err){
           

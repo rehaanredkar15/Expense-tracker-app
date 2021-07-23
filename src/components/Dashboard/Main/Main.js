@@ -1,9 +1,9 @@
 import React from 'react'
 import { makeStyles } from "@material-ui/core/styles";
-import {Grid,Card,CardContent,List,Typography,Divider }from "@material-ui/core";
+import {Grid,Card,CardContent,Typography,Divider }from "@material-ui/core";
 import { CardHeader} from "@material-ui/core";
 import Form from '../Main/Form/Form'
-
+import List from '../Main/TransList/List';
 const useStyles = makeStyles((theme) => ({
      
     root:{
@@ -38,6 +38,7 @@ const Main = () => {
             
                <Grid container spacing={2}>
                    <Grid item xs={12}>
+                  
                       <List />
                    </Grid>
                </Grid>

@@ -1,7 +1,8 @@
 import React from 'react'
 import { TextField,Typography,Grid,Button,FormControl,InputLabel,Select,MenuItem } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
+// import {   MuiPickersUtilsProvider,KeyboardDatePicker} from '@material-ui/pickers';
+// import DateFnsUtils from '@date-io/date-fns';
 
 const useStyles = makeStyles((theme) => ({
      
@@ -24,6 +25,7 @@ const Form = () => {
     const classes = useStyles();
 
     return (
+        // <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <Typography align="center" variant="subtitle2" gutterBottom>
@@ -51,10 +53,20 @@ const Form = () => {
               <TextField type="number" label="Amount" fullWidth/>
             </Grid>
             <Grid item xs={6}>
-              <TextField type="date" label="Date" fullWidth/>
+               {/* <KeyboardDatePicker
+              disableToolbar
+          variant="inline"
+          format="MM/dd/yyyy"
+          margin="normal"
+          id="date-picker-inline"
+          label="Date picker inline"
+         
+        
+        /> */}
             </Grid>
             <Button variant="outlined" color="primary" className={classes.button} fullWidth >Create</Button>
         </Grid>
+        //  </MuiPickersUtilsProvider>
     )
 }
 

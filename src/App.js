@@ -6,6 +6,7 @@ import Signup from './components/Authentication/Signup.js';
 import Login from './components/Authentication/Login.js';
 import ForgotPassword from './components/Authentication/ForgotPassword.js';
 import {AuthProvider} from './Context/AuthContext';
+import {TransProvider} from './Context/TransContext';
 import PrivateRoute from "./components/Authentication/PrivateRoute";
 import './App.css';
 
@@ -16,12 +17,14 @@ function App() {
 <div>
    <Router>
    <AuthProvider>
+   <TransProvider>
      <Switch>
        <Route  exact path="/" component={Dashboard}/>
        <Route path="/signup" component={Signup}/>
        <Route path="/login" component={Login}/>
        <Route path="/reset" component={ForgotPassword}/>
      </Switch>
+       </TransProvider>
    </AuthProvider>
    </Router>
    </div>
