@@ -26,7 +26,7 @@ const List = () => {
 
      const classes = useStyles();
       
-      const {DeleteTransaction,AddTransaction}  = useTrans();
+      const {DeleteTransaction}  = useTrans();
 
      
      const transactions= [
