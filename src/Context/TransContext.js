@@ -15,7 +15,7 @@ export function useTrans(){
 
 export function TransProvider({children}) {
 
-     const [transaction, dispatch] = useReducer(ContextReducer, InitialState)
+     const [transactions, dispatch] = useReducer(ContextReducer, InitialState)
 
      //action creators
      const DeleteTransaction =(id) =>{
@@ -30,7 +30,7 @@ export function TransProvider({children}) {
         
         dispatch({
              type:'ADD_TRANSACTION',
-             payload:transaction,
+             payload:transactions,
         })
      }
    
