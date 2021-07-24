@@ -26,19 +26,10 @@ const List = () => {
 
      const classes = useStyles();
       
-      const {DeleteTransaction}  = useTrans();
+      const {DeleteTransaction,transactions }  = useTrans();
+    
 
-     
-     const transactions= [
-
-       { id:1,type:'Income', category:'Salary',amount:'50',date:'11 May'},
-       { id:1,type:'Income', category:'Salary',amount:50,date:'11 May'},
-       { id:1,type:'Income', category:'Salary',amount:50,date:'11 May'},
-       { id:1,type:'Expense', category:'Sex',amount:20,date:'11 May'},
-       { id:1,type:'Income', category:'Shivani ',amount:50,date:'11 May'},
-       { id:1,type:'Income', category:'Shivani ',amount:50,date:'11 May'}
-
-     ]
+  
      return (
          <TransList dense={false} className={classes.list}>
       {transactions.map((transaction) => (
@@ -51,7 +42,7 @@ const List = () => {
             </ListItemAvatar>
             <ListItemText primary={transaction.category} secondary={`$${transaction.amount} - ${transaction.date}`} />
             <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="delete">
+              <IconButton edge="end" aria-label="delete" onClick={() => DeleteTransaction(transaction.id)}> 
                 <Delete />
               </IconButton>
             </ListItemSecondaryAction>
