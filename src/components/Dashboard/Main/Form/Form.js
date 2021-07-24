@@ -39,7 +39,6 @@ const Form = () => {
     const createTransaction =() => {
 
 
-        console.log('button clicked')
         const transaction = {  ... FormData,amount:Number(FormData.amount),id:uuidv4()}
         
         AddTransaction(transaction);
