@@ -12,7 +12,7 @@ const ContextReducer = (state,action) => {
               return transactions;
       
 
-         case 'Delete_TRANSACTION':
+         case 'DELETE_TRANSACTION':
              
              transactions = state.filter((t) => t.id != action.payload)  //this higher order function will remove the id matching id passed to be delted
               //we have used here state because we set the state to be transaction
