@@ -13,7 +13,8 @@ export function useTrans(){
 
 
 
-export function TransProvider({children}) {
+export  function TransProvider({children})  {
+
 
      const [transactions, dispatch] = useReducer(ContextReducer, InitialState)
      
@@ -38,17 +39,16 @@ export function TransProvider({children}) {
         
      }
    
-     console.log(transactions);
+     
      const value={
-          DeleteTransaction,AddTransaction,transactions,
+          DeleteTransaction,AddTransaction,transactions
      }
     
     return (
         <TransContext.Provider value={value}>
-            
              {children}
         </TransContext.Provider>
     )
 }
 
-export default TransProvider
+export default TransContext
