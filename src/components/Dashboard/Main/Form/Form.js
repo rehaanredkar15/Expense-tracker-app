@@ -5,6 +5,14 @@ import { makeStyles } from "@material-ui/core/styles";
 // import DateFnsUtils from '@date-io/date-fns';
 import { useTrans }  from '../../../../Context/TransContext';
 import {v4 as uuidv4 } from 'uuid';
+import { incomeCategories,expenseCategories} from '../../../constants/categories'
+import formatDate from '../../../constants/formatDate';
+
+
+
+
+
+
 const useStyles = makeStyles((theme) => ({
      
    radioGroup:{
@@ -26,7 +34,8 @@ const InitialState = {
   amount:"",
   category:"",
   type:'Income',
-  data:new Date(),
+  date: formatDate(new Date()),
+  
 }
 
 const Form = () => {
@@ -44,6 +53,11 @@ const Form = () => {
         AddTransaction(transaction);
         setFormData(InitialState)
     }
+
+
+    const selectedcategories = FormData.type == 'Income' ? incomeCategories : expenseCategories;
+
+
     return (
 
         <Grid container spacing={2}>
@@ -65,8 +79,7 @@ const Form = () => {
               <FormControl fullWidth>
                 <InputLabel>Category</InputLabel>
                 <Select value={FormData.category} onChange={ (e) => setFormData({...FormData,category:e.target.value})}> 
-                  <MenuItem value="Grocery">Grocery</MenuItem>
-                  <MenuItem value="Sex">Sex</MenuItem>
+                  {selectedcategories.map((c) => <MenuItem key={c.type} value={c.type}>{c.type}</MenuItem>)}
                 </Select>
               </FormControl>
             </Grid>
@@ -74,7 +87,7 @@ const Form = () => {
               <TextField type="number" label="Amount" fullWidth  value={FormData.amount}  onChange={ (e) => setFormData({...FormData,amount:e.target.value})}/>
             </Grid>
             <Grid item xs={6}>
-              <TextField type="date" label="Date" fullWidth value={FormData.date} onChange={ (e) => setFormData({...FormData,date:e.target.value})}/>
+              <TextField type="date" label="Date" fullWidth value={FormData.date} onChange={ (e) => setFormData({...FormData,date: formatDate(e.target.value)})}/>
             </Grid>
             <Button variant="outlined" color="primary" className={classes.button} fullWidth onClick={createTransaction} >Create</Button>
         </Grid>
