@@ -52,7 +52,7 @@ const Dashboard = () => {
               <Info title="Income"/>
            </Grid>
             <Grid item xs={12} sm={3}>
-              <Info title="Expenses"/>
+              <Info title="Expense"/>
            </Grid>
          </Grid>
         </div>

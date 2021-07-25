@@ -39,7 +39,6 @@ export  function TransProvider({children})  {
         
      }
    
-     
      const value={
           DeleteTransaction,AddTransaction,transactions
      }

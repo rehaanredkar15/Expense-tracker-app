@@ -33,7 +33,7 @@ const InitialState = {
 
   amount:"",
   category:"",
-  type:'Income',
+  type:'',
   date: formatDate(new Date()),
   
 }
@@ -48,14 +48,15 @@ const Form = () => {
     const createTransaction =() => {
 
 
-        const transaction = {  ... FormData,amount:Number(FormData.amount),id:uuidv4()}
+        const transaction = {  ...FormData,amount:Number(FormData.amount),id:uuidv4()}
         
+     
         AddTransaction(transaction);
         setFormData(InitialState)
     }
 
 
-    const selectedcategories = FormData.type == 'Income' ? incomeCategories : expenseCategories;
+    const selectedcategories = FormData.type === 'Income' ? incomeCategories : expenseCategories;
 
 
     return (

@@ -4,25 +4,24 @@ import {incomeCategories,expenseCategories,resetCategories} from '../components/
 
 const useTransactions = (title)=>{
   
-  console.log(title)
+  
      resetCategories();
        const { transactions }  = useTrans();
     const rightTransactions = transactions.filter((t) => t.type === title);
+    
   const total = rightTransactions.reduce((acc, currVal) => acc += currVal.amount, 0);
-  const categories = title === 'Income' ? incomeCategories : expenseCategories;
-
+const categories = title === 'Income' ? incomeCategories : expenseCategories;
+  
 
   rightTransactions.forEach((t) => {
-    const category = categories.find((c) => c.type === t.category);
-    console.log(category)
+    const category = categories.find((c) => c.type === t.category );
+   
     if (category) 
     {
         category.amount += t.amount;
         
     }
-    else{
-        console.log(category)
-    }
+
   });
 
   const filteredCategories = categories.filter((sc) => sc.amount > 0);
