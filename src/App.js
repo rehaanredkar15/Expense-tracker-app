@@ -11,10 +11,11 @@ import PrivateRoute from "./components/Authentication/PrivateRoute";
 import './App.css';
 
 
+
 function App() {
   return (
 
-<div>
+
    <Router>
    <AuthProvider>
    <TransProvider>
@@ -27,7 +28,6 @@ function App() {
        </TransProvider>
    </AuthProvider>
    </Router>
-   </div>
   );
 }
 
