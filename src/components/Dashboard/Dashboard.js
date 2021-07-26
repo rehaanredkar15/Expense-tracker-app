@@ -5,6 +5,11 @@ import Info from '../Dashboard/Info';
 import Main from '../Dashboard/Main/Main';
 import Form from '../Dashboard/Main/Form/Form';
 import Box from '@material-ui/core/Box';
+import { PushToTalkButton,PushToTalkButtonContainer,ErrorPanel} from '@speechly/react-ui'
+
+
+
+
 
 const useStyles = makeStyles((theme) => ({
      
@@ -46,7 +51,12 @@ const Dashboard = () => {
         <div>
          <Grid className={classes.grid} container spacing={0} alignItems="center"  spacing={2} justify="center" style={{ height:'100vh' ,width:'100%'}}>
             <Grid item xs={12} sm={4}>
+            <PushToTalkButtonContainer>
+                <PushToTalkButton/>
+                <ErrorPanel/>
+              </PushToTalkButtonContainer>
               <Main/>
+              
              </Grid>
            <Grid item xs={12} sm={3} >
               <Info title="Income"/>
