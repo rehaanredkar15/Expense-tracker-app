@@ -58,7 +58,7 @@ const Form = () => {
  
     useEffect(() => {
         
-
+      
         //intents are actions 
         if(segment){
              
@@ -84,7 +84,7 @@ const Form = () => {
 
         segment.entities.forEach((e) => {
    
-         
+           const category = `${e.value.charAt(0)}${e.value.slice(1).toLowerCase()}`
          switch (e.type) {
 
            case 'amount':
@@ -92,7 +92,15 @@ const Form = () => {
              break;
 
           case 'category':
-             setFormData({...FormData, category:e.value})
+
+            if(incomeCategories.map((iC) => iC.type ).includes(category)){
+
+             setFormData({...FormData, type:'Income',category})
+            }
+            else if(expenseCategories.map((iC) => iC.type).includes(category))
+            { 
+                  setFormData({...FormData, type:'Expense',category})
+            }
              break;
 
           case 'date':
@@ -104,9 +112,18 @@ const Form = () => {
 
 
         })
+         
+         if(segment.isFinal && FormData.amount && FormData.category && FormData.type && FormData.date){
 
+
+           createTransaction();
+         }
+
+
+ 
         }
         
+       
     }, [segment])
     const selectedcategories = FormData.type === 'Income' ? incomeCategories : expenseCategories;
 
