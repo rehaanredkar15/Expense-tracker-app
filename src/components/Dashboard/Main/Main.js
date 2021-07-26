@@ -29,7 +29,7 @@ const Main = () => {
              <CardContent>
                <Typography align="center" variant="h5">Current Balance:  5000 Rs </Typography>
                <Typography align="center" variant="subtitle1" style={{ lineHeight:'1.5rem',marginTop:'10px',marginBottom: '20px'}}>
-                 Try Saying: Add Income for 1000Rs in Category Stocks for Monday...
+                 Try Saying: Add Income for 7000Rs in Category Salary for Monday...
                  </Typography>
                 <Divider/> 
                 <Form/>
