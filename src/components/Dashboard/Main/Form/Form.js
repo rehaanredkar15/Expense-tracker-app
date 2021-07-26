@@ -83,7 +83,31 @@ const Form = () => {
            //enitites are amount category and etc
 
         segment.entities.forEach((e) => {
+   
+         
+         switch (e.type) {
 
+           case 'amount':
+             setFormData({...FormData, amount:e.value});
+             break;
+
+          case 'category':
+             setFormData({...FormData, category:e.value})
+             break;
+
+          case 'date':
+              setFormData({...FormData, date:e.value})
+             break;
+          default:
+             break;
+         }
+
+
+        })
+
+        }
+        
+    }, [segment])
     const selectedcategories = FormData.type === 'Income' ? incomeCategories : expenseCategories;
 
 
