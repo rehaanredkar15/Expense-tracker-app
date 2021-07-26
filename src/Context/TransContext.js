@@ -38,9 +38,10 @@ export  function TransProvider({children})  {
         })
         
      }
-   
+     
+     const balance = transactions.reduce((acc,currval) => currval.type === 'Expense'? acc - currval.amount : acc + currval.amount,0);
      const value={
-          DeleteTransaction,AddTransaction,transactions
+          DeleteTransaction,AddTransaction,transactions,balance
      }
     
     return (
