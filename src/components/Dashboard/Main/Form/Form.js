@@ -55,6 +55,34 @@ const Form = () => {
         setFormData(InitialState)
     }
 
+ 
+    useEffect(() => {
+        
+
+        //intents are actions 
+        if(segment){
+             
+             if(segment.intent.intent === 'add_expense')
+             {
+               setFormData({...FormData,type:'Expense'})
+             }
+             else if(segment.intent.intent ==='add_income')
+             {
+                setFormData({...FormData,type:'Income'})
+             }
+             else if (segment.isFinal && segment.intent.intent === "create_transaction")
+            {
+              return createTransaction();
+            }
+             else if (segment.isFinal && segment.intent.intent === "cancel_transaction")
+            {
+              return setFormData(InitialState);
+            }
+        
+           
+           //enitites are amount category and etc
+
+        segment.entities.forEach((e) => {
 
     const selectedcategories = FormData.type === 'Income' ? incomeCategories : expenseCategories;
 
