@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { TextField,Typography,Grid,Button,FormControl,InputLabel,Select,MenuItem } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 // import {   MuiPickersUtilsProvider,KeyboardDatePicker} from '@material-ui/pickers';
@@ -7,7 +7,7 @@ import { useTrans }  from '../../../../Context/TransContext';
 import {v4 as uuidv4 } from 'uuid';
 import { incomeCategories,expenseCategories} from '../../../constants/categories'
 import formatDate from '../../../constants/formatDate';
-
+import { useSpeechContext} from '@speechly/react-client'
 
 
 
@@ -33,7 +33,7 @@ const InitialState = {
 
   amount:"",
   category:"",
-  type:'',
+  type:'Expense',
   date: formatDate(new Date()),
   
 }
@@ -42,7 +42,7 @@ const Form = () => {
 
     const classes = useStyles();
     const [FormData, setFormData] = useState(InitialState)
-
+    const { segment } = useSpeechContext();
     const { AddTransaction } = useTrans();
     
     const createTransaction =() => {
