@@ -7,16 +7,49 @@ import {useAuth} from './AuthContext';
 const ContextReducer = (state,action) => {
       
 
-         case 'DELETE_TRANSACTION':
-             
-             transactions = state.filter((t) => t.id != action.payload)  //this higher order function will remove the id matching id passed to be delted
-              //we have used here state because we set the state to be transaction
-            
-            return transactions;
-       default:
-          return state;
+        switch(action.type) {
+    case 'DELETE_TRANSACTION':
+           
+      return {
+        ...state,
+        transactions: state.transactions.filter(transaction => transaction.id !== action.payload)
+      }
+    
+
+
+    case 'ADD_TRANSACTION':
+
+      return {
+        ...state,
+        transactions: [action.payload, ...state.transactions]
+      }
+
+
+       case 'GET_TRANSACTIONS':
+        
           
-     }
+           return {
+                 ...state,
+                   loading: false,
+             transactions: [...action.payload]
+            
+           }
+       case 'FETCH_TRANSACTIONS':
+        
+        
+           return {
+                 ...state,
+                   loading: false,
+             transactions: [...action.payload]
+            
+           }
+                 
+
+    default:
+      return state;
+  }
+
+
 }
 
 export default ContextReducer
