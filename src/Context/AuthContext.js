@@ -4,7 +4,7 @@ import firebase from 'firebase/app';
 
 
 
-const AuthContext = React.createContext();
+export const AuthContext = React.createContext();
 
 
 export function useAuth(){
@@ -16,7 +16,7 @@ export function useAuth(){
 export  function AuthProvider({children})  {
      const [CurrentUser, setCurrentUser] = useState()
  
-    
+     const [loading, setLoading] = useState(true);
 
 
     
@@ -73,6 +73,7 @@ export  function AuthProvider({children})  {
          
         const unsubscribe = auth.onAuthStateChanged((user) => {
             setCurrentUser(user);
+            setLoading(false);
         })
      }, [])
     
@@ -93,7 +94,7 @@ export  function AuthProvider({children})  {
      
     return (
         <AuthContext.Provider value={value}>
-            {children}
+            {!loading && children}
         </AuthContext.Provider>
     )
 }
