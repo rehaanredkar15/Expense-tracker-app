@@ -8,12 +8,11 @@ import  useTransactions from  '../../Context/useTransaction';
 const useStyles = makeStyles({
 
     income: {
-    borderBottom: '10px solid rgba(0, 255, 0, 0.5)',
+
     height:'41rem',
      width:'25rem'
   },
   expense: {
-    borderBottom: '10px solid rgba(255, 0, 0, 0.5)',
      height:'41rem',
      width:'25rem'
   },
@@ -28,10 +27,10 @@ const Info = ({title,subheader}) => {
         
 
     return (
-          <Card className={title === 'Income' ? classes.income : classes.expense}>
+          <Card className={title === 'Income' ? classes.income : classes.expense}  elevation={20}>
            <CardHeader title={title} subheader={subheader} />
          <CardContent>
-          <Typography variant="h5">{total}Rs</Typography>
+          <Typography variant="h5">{total} Rs</Typography>
           <Doughnut data={chartData} />
          </CardContent>
             
