@@ -8,7 +8,7 @@ import {v4 as uuidv4 } from 'uuid';
 import { incomeCategories,expenseCategories} from '../../../constants/categories'
 import formatDate from '../../../constants/formatDate';
 import { useSpeechContext} from '@speechly/react-client'
-
+import MySnackbar from '../Snackbar';
 
 
 
@@ -44,14 +44,18 @@ const Form = () => {
     const [FormData, setFormData] = useState(InitialState)
     const { segment } = useSpeechContext();
     const { AddTransaction } = useTrans();
+    const [open, setOpen] = useState(false);
     
+
     const createTransaction =() => {
 
       if(Number.isNaN(Number(FormData.amount)) || !FormData.date.includes('-')) return ;
-        const transaction = {  ...FormData,amount:Number(FormData.amount),id:uuidv4()}
+        const id = uuidv4()
+        const transaction = {  ...FormData,amount:Number(FormData.amount) ,id}
         
-     
-        AddTransaction(transaction);
+        setOpen(true);
+        
+        AddTransaction(transaction,id);
         setFormData(InitialState)
     }
 
@@ -131,6 +135,7 @@ const Form = () => {
     return (
 
         <Grid container spacing={2}>
+          <MySnackbar open={open} setOpen={setOpen} />
           <Grid item xs={12}>
             <Typography align="center" variant="subtitle2" gutterBottom>
              {
