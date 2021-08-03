@@ -1,23 +1,25 @@
-import React,{useContext} from 'react'
+import React,{useContext,useEffect} from 'react'
 import { List as TransList,ListItem,ListItemAvatar,ListItemText,Avatar,ListItemSecondaryAction,IconButton,Slide} from '@material-ui/core'
 import { makeStyles } from "@material-ui/core/styles";
 import {Delete ,MoneyOff} from '@material-ui/icons';
 import { useTrans }  from '../../../../Context/TransContext';
+import { useAuth}  from '../../../../Context/AuthContext';
+import formatDate from '../../../constants/formatDate';
 
 
 
 const useStyles = makeStyles((theme) => ({
 
-    avatarIncome: {
+     avatarIncome: {
     color: '#fff',
-    backgroundColor: 'green',
+    backgroundColor: '#00FF00',
   },
   avatarExpense: {
   
-    backgroundColor: 'red',
+    backgroundColor: '#ff0000',
   },
   list: {
-    maxHeight: '150px',
+    maxHeight: '145px',
     overflow: 'auto',
   },
 }))
@@ -25,11 +27,23 @@ const useStyles = makeStyles((theme) => ({
 const List = () => {
 
      const classes = useStyles();
-      
-      const {DeleteTransaction,transactions }  = useTrans();
-    
+     const {CurrentUser} = useAuth();
 
-  
+      const {DeleteTransaction,transactions,FetchTransaction,Trans}  = useTrans();
+    
+    useEffect(() => {
+
+     FetchTransaction(CurrentUser.uid);
+      
+    }, [])
+     
+
+     const handle=(id) => {
+      
+        
+        DeleteTransaction(id)
+
+     }
      return (
          <TransList dense={false} className={classes.list}>
       {transactions.map((transaction) => (
@@ -40,10 +54,10 @@ const List = () => {
                 <MoneyOff />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary={transaction.category} secondary={`$${transaction.amount} - ${transaction.date}`} />
+            <ListItemText primary={transaction.category} secondary={`${transaction.amount}Rs  on   :${formatDate(transaction.date)}`} />
             <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="delete" onClick={() => DeleteTransaction(transaction.id)}> 
-                <Delete />
+              <IconButton edge="end" aria-label="delete" onClick={() => handle(transaction.id)}> 
+                <Delete/>
               </IconButton>
             </ListItemSecondaryAction>
           </ListItem>
