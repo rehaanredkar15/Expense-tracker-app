@@ -2,6 +2,7 @@ import React ,{useRef,useState} from 'react'
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth}  from '../../Context/AuthContext';
 import {Link,useHistory} from 'react-router-dom'
+import CenteredContainer from "./CenteredContainer";
 
 const Signup = () => {
     const [Error, SetError] = useState('');
@@ -36,32 +37,32 @@ const Signup = () => {
         setLoading(false);
     } 
     return (
-        <div>
+        <CenteredContainer>
         <Card.Body>
             <h2 className="text-center mb-4 m-auto">Signup</h2>
-            {Error && <Alert variant="danger" className="h-2 w-50">{Error}</Alert>}
+            {Error && <Alert variant="danger" className="h-2 ">{Error}</Alert>}
             <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3 w-50 ">
+                <Form.Group className="mb-3  ">
                <Form.Label>UserName</Form.Label>
                <Form.Control type="text" ref={userRef} required />
                </Form.Group>
               
-              <Form.Group className="mb-3 w-50 ">
+              <Form.Group className="mb-3  ">
                <Form.Label>Email Address</Form.Label>
                <Form.Control type="email" ref={emailRef} required />
               </Form.Group>
             
               
-              <Form.Group className='mb-3 w-50' Id = "Password">
+              <Form.Group className='mb-3 ' Id = "Password">
                 <Form.Label>Password</Form.Label>
                <Form.Control type="password" ref={PasswordRef} required />
               </Form.Group>
-              <Form.Group className='mb-3 w-50' Id = "ConfirmPassword">
+              <Form.Group className='mb-3 ' Id = "ConfirmPassword">
                 <Form.Label>ConfirmPassword</Form.Label>
                <Form.Control type="password" ref={ConfirmPasswordRef} required />
               </Form.Group>
            
-             <Button disabled={Loading} className="w-50"type="submit">
+             <Button disabled={Loading} className="w-100"type="submit">
                 Sign Up
               </Button>
                <Card.Body>
@@ -71,7 +72,7 @@ const Signup = () => {
               </Card.Body>{" "}
               </Form>
            </Card.Body>
-        </div>
+        </CenteredContainer>
     )
 }
 

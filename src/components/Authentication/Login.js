@@ -2,6 +2,10 @@ import React ,{useRef,useState} from 'react'
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth}  from '../../Context/AuthContext';
 import {Link,useHistory} from 'react-router-dom'
+import CenteredContainer from "./CenteredContainer";
+
+
+
 
 const Login = () => {
     const [Error, SetError] = useState('');
@@ -10,7 +14,7 @@ const Login = () => {
     const PasswordRef  = useRef();
     const history = useHistory();
      
-    const { login ,googlesignin} = useAuth();
+    const { login , googlesignin} = useAuth();
 
  
     async function  handleSubmit(e) {
@@ -51,24 +55,26 @@ const Login = () => {
         setLoading(false);
     }
     return (
-        <div>
+
+        <CenteredContainer>
+        
         <Card.Body>
             <h2 className="text-center mb-4 m-auto">Login</h2>
-             {Error && <Alert variant="danger" className="h-2 w-50">{Error}</Alert>}
+             {Error && <Alert variant="danger" className="h-2 ">{Error}</Alert>}
             <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3 w-50 ">
+              <Form.Group className="mb-3  ">
                <Form.Label>Email Address</Form.Label>
                <Form.Control type="email" ref={emailRef} required />
               </Form.Group>
             
               
-              <Form.Group className='mb-3 w-50' Id = "Password">
+              <Form.Group className='mb-3 ' Id = "Password">
                 <Form.Label>Password</Form.Label>
                <Form.Control type="password" ref={PasswordRef} required />
               </Form.Group>
              
            
-              <Button disabled={Loading} className="w-50"type="submit">
+              <Button disabled={Loading} className="w-100" type="submit">
                 Login
               </Button>
              
@@ -82,10 +88,11 @@ const Login = () => {
               </Card.Body>
               </Form>
                <Button disabled={Loading} variant="light" size="sm"  type="submit" onClick={handlegoogle}>
-                <img src="https://cdn.dribbble.com/users/1717214/screenshots/4124610/g-logo.gif" alt="google logo" />
+                <img className= " w-50 h-50" src="https://cdn.dribbble.com/users/1717214/screenshots/4124610/g-logo.gif" alt="google logo" />
               </Button>
            </Card.Body>
-        </div>
+        </CenteredContainer>
+       
     )
 }
 

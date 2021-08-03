@@ -12,6 +12,8 @@ import { PushToTalkButton,PushToTalkButtonContainer,ErrorPanel} from '@speechly/
 
 
 const useStyles = makeStyles((theme) => ({
+
+
      
        desktop: {
     [theme.breakpoints.up('sm')]: {
@@ -21,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
   mobile: {
     [theme.breakpoints.down('sm')]: {
       display: 'none',
+       padding: '5rem',
     },
   },
   main: {
@@ -49,8 +52,8 @@ const Dashboard = () => {
     return (
 
         <div>
-         <Grid className={classes.grid} container spacing={0} alignItems="center"  spacing={2} justify="center" style={{ height:'100vh' ,width:'100%'}}>
-            <Grid item xs={12} sm={4}>
+         <Grid className={classes.grid} container spacing={2} alignItems="center"  spacing={2}  style={{ height:'100vh' ,width:'100%'}}>
+            <Grid item xs={15} sm={4}>
             <PushToTalkButtonContainer>
                 <PushToTalkButton/>
                 <ErrorPanel/>
@@ -58,10 +61,10 @@ const Dashboard = () => {
               <Main/>
               
              </Grid>
-           <Grid item xs={12} sm={3} >
+           <Grid item xs={10} sm={3} >
               <Info title="Income"/>
            </Grid>
-            <Grid item xs={12} sm={3}>
+            <Grid item xs={10} sm={3}>
               <Info title="Expense"/>
            </Grid>
          </Grid>
