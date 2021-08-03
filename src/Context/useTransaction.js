@@ -1,7 +1,6 @@
 import {useTrans }  from '../Context/TransContext';
 import {incomeCategories,expenseCategories,resetCategories} from '../components/constants/categories'
 
-
 const useTransactions = (title)=>{
   
   
