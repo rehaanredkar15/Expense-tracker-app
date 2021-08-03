@@ -13,6 +13,10 @@ const app = firebase.initializeApp({
   });
 
   const firestore = app.firestore();
+  export const database = {
 
+    users: firestore.collection('users')
+
+  }
   export const auth = app.auth();
   export default app;

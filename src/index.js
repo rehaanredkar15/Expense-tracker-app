@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {SpeechProvider} from '@speechly/react-client';
-
+import './index.css';
 
 ReactDOM.render(
   
