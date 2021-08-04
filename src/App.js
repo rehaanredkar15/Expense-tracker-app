@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route,Redirect } from "react-router-dom";
 import Dashboard from './components/Dashboard/Dashboard.js';
 import Transactionboard from './components/Dashboard/Transactionboard.js';
 import Signup from './components/Authentication/Signup.js';
@@ -26,6 +26,10 @@ function App() {
        <Route path="/signup" component={Signup}/>
        <Route path="/login" component={Login}/>
        <Route path="/reset" component={ForgotPassword}/>
+       <Route>
+        <Redirect to ='/' />
+      </Route>
+
      </Switch>
        </TransProvider>
    </AuthProvider>
