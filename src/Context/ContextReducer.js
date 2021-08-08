@@ -5,17 +5,9 @@ import {useAuth} from './AuthContext';
 
 
 const ContextReducer = (state,action) => {
-      
-
-        switch(action.type) {
-    case 'DELETE_TRANSACTION':
-           
-      return {
-        ...state,
-        transactions: state.transactions.filter(transaction => transaction.id !== action.payload)
-      }
     
-
+        switch(action.type) {
+    
 
     case 'ADD_TRANSACTION':
 
@@ -24,7 +16,12 @@ const ContextReducer = (state,action) => {
         transactions: [action.payload, ...state.transactions]
       }
 
-
+    case 'DELETE_TRANSACTION':
+           
+      return {
+        ...state,
+        transactions: state.transactions.filter(transaction => transaction.id !== action.payload)
+      }
        case 'GET_TRANSACTIONS':
         
           

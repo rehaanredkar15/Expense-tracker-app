@@ -65,11 +65,15 @@ const FullList = () => {
      }
 
      return (
-
+                    
                    <Card className={classes.root}  elevation={20}>
+                   <Typography variant="h7">
+                      Click on the Pen and then enter the update values
+                     </Typography>
                    <Link to="/" style={{ textDecoration: 'none'}}>
                    <Button className = {classes.btn}  color="primary" > ← Back To Tracker</Button>
                      </Link>
+                     
                      <TransList dense={false} className={classes.list}>
                             {transactions.map((transaction) => (
                             <Slide direction="down" in mountOnEnter unmountOnExit key={transaction.id}>

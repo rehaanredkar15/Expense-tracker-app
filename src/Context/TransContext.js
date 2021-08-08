@@ -19,7 +19,6 @@ export function useTrans(){
 }
 
 
-
 export  function TransProvider({children})  {
 
      var search;
@@ -45,7 +44,7 @@ export  function TransProvider({children})  {
                                      .doc(id)
                                      .delete()
                                      .then(() => {
-                                          console.log("hey Dev !!deleted sucessfullly")
+                                          console.log("hey Dev !!deleted Sucesfullly")
                                      })
                     
                      } catch (err) {
@@ -107,9 +106,7 @@ export  function TransProvider({children})  {
 
                 console.log(err.message)
            }
-        
-     
-        
+
      }
 
         

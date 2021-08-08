@@ -60,9 +60,7 @@ const Form = () => {
     }
 
  
-    useEffect(() => {
-        
-      
+    useEffect(() => {  
         //intents are actions 
         if(segment){
              
@@ -81,25 +79,18 @@ const Form = () => {
              else if (segment.isFinal && segment.intent.intent === "cancel_transaction")
             {
               return setFormData(InitialState);
-            }
-        
-           
+            } 
            //enitites are amount category and etc
-
         segment.entities.forEach((e) => {
-   
            const category = `${e.value.charAt(0)}${e.value.slice(1).toLowerCase()}`
          switch (e.type) {
 
            case 'amount':
              setFormData({...FormData, amount:e.value});
              break;
-
           case 'category':
-
             if(incomeCategories.map((iC) => iC.type ).includes(category)){
-
-             setFormData({...FormData, type:'Income',category})
+                 setFormData({...FormData, type:'Income',category})
             }
             else if(expenseCategories.map((iC) => iC.type).includes(category))
             { 
@@ -113,21 +104,12 @@ const Form = () => {
           default:
              break;
          }
-
-
         })
          
          if(segment.isFinal && FormData.amount && FormData.category && FormData.type && FormData.date){
-
-
            createTransaction();
          }
-
-
- 
         }
-        
-       
     }, [segment])
     const selectedcategories = FormData.type === 'Income' ? incomeCategories : expenseCategories;
 
