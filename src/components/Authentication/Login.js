@@ -60,6 +60,9 @@ const Login = () => {
         
         <Card.Body>
             <h2 className="text-center mb-4 m-auto">Login</h2>
+            <p>For Guest Login </p>
+            <p> Email : Guest@gmail.com </p>
+            <p> Password : welcome</p>
              {Error && <Alert variant="danger" className="h-2 ">{Error}</Alert>}
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3  ">
